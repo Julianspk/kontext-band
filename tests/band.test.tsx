@@ -93,3 +93,20 @@ test('Leiste zeigt Restzeit, Trefferquote und Kontext', async ($, on) => {
   expect(await ui.find({ type: 'Button', key: 'compact' })).toBeTruthy()
   await ui.unmount()
 })
+
+// Headless (Desktop-App, SDK): compact() lehnt ab, dann läuft der Befehl /compact
+test('Compact weicht bei abgelehntem compact() auf den Befehl /compact aus', async ($, on) => {
+  mock.clock(on, { now: 1_000_000 })
+  const toasts: string[] = []
+  const befehle: string[] = []
+  on('ui.toast', (_, e) => (toasts.push(e.text), { value: undefined }))
+  on('session.compact', () => {
+    throw new Error('not available in a headless session')
+  })
+  on('command.run', (_, e) => (befehle.push(e.command), { text: '' }))
+
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+  await ui.press({ key: 'compact' })
+  expect({ befehle, toasts }).toEqual({ befehle: ['compact'], toasts: ['Kompaktiere Kontext ...'] })
+  await ui.unmount()
+})

@@ -53,7 +53,7 @@ Vor dem ersten abgeschlossenen Turn stehen Cache-Zeit und Trefferquote auf `–`
 
 ### Compact
 
-Der Button löst die Kompaktierung aus und meldet das Ergebnis als Hinweis: `Kompaktiere Kontext ...`, danach `Kontext kompaktiert`, `Compact übersprungen: <Grund>` oder `Compact fehlgeschlagen: <Fehler>`. Läuft gerade ein Turn, ist der Button gedimmt und meldet beim Klick, dass Compact erst danach möglich ist.
+Der Button löst die Kompaktierung aus und meldet das Ergebnis als Hinweis: `Kompaktiere Kontext ...`, danach `Kontext kompaktiert`, `Compact übersprungen: <Grund>` oder `Compact fehlgeschlagen: <Fehler>`. Läuft gerade ein Turn, ist der Button gedimmt und meldet beim Klick, dass Compact erst danach möglich ist. In der Desktop-App und im SDK gibt es die direkte Kompaktierung nicht; dort führt der Button den Befehl `/compact` aus, dessen Ergebnis die Engine selbst anzeigt.
 
 ### Ausblenden und wieder einblenden
 
