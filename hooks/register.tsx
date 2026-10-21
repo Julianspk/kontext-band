@@ -76,8 +76,14 @@ export const register: Register = on => {
       try {
         const r = await $.session.compact()
         $.ui.toast(r.skip === undefined ? 'Kontext kompaktiert' : `Compact übersprungen: ${r.skip}`)
-      } catch (err) {
-        $.ui.toast(`Compact fehlgeschlagen: ${err instanceof Error ? err.message : String(err)}`)
+      } catch {
+        // Desktop-App und SDK laufen headless: $.session.compact() gibt es dort nicht,
+        // der Befehl /compact schon. Er läuft als eigener Turn, das Ergebnis zeigt die Engine selbst.
+        try {
+          await $.command.run({ command: 'compact' })
+        } catch (err) {
+          $.ui.toast(`Compact fehlgeschlagen: ${err instanceof Error ? err.message : String(err)}`)
+        }
       }
     }
 

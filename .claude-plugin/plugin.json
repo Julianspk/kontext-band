@@ -1,6 +1,6 @@
 {
   "name": "kontext-band",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Leiste über dem Prompt: Kontext-Füllstand, Cache-Restzeit und Cache-Trefferquote",
   "types": "./types/index.d.ts"
 }
