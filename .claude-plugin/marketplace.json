@@ -1,0 +1,5 @@
+{
+  "name": "kontext-band",
+  "owner": { "name": "Julianspk" },
+  "plugins": [{ "name": "kontext-band", "source": "./" }]
+}
