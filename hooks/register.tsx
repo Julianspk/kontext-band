@@ -66,6 +66,12 @@ export const register: Register = on => {
     }
 
     const compact = async () => {
+      // $.session.compact() lehnt ab, solange ein Turn läuft
+      if (e.props.isWorking) {
+        $.ui.toast('Compact erst nach dem laufenden Turn möglich')
+
+        return
+      }
       $.ui.toast('Kompaktiere Kontext ...')
       try {
         const r = await $.session.compact()
@@ -129,9 +135,8 @@ export const register: Register = on => {
           <Text color={kontextFarbe} weight="semibold" tabular>
             {k === null ? '–' : `${k}%`}
           </Text>
-          {!e.props.isWorking && (
-            <Button key="compact" variant="primary" label="Compact" onPress={() => void compact()} />
-          )}
+          {/* Immer da, damit die Leiste nicht springt; gedimmt, solange ein Turn läuft */}
+          <Button key="compact" variant="primary" dimColor={e.props.isWorking} label="Compact" onPress={() => void compact()} />
         </Box>
         <Button key="close" role="dismiss" plain dimColor label="x" onPress={() => void update($, versteckt, () => true)} />
       </Box>

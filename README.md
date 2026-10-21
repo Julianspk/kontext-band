@@ -53,7 +53,7 @@ Vor dem ersten abgeschlossenen Turn stehen Cache-Zeit und Trefferquote auf `–`
 
 ### Compact
 
-Der Button löst die Kompaktierung aus und meldet das Ergebnis als Hinweis: `Kompaktiere Kontext ...`, danach `Kontext kompaktiert`, `Compact übersprungen: <Grund>` oder `Compact fehlgeschlagen: <Fehler>`. Läuft gerade ein Turn, ist der Button ausgeblendet.
+Der Button löst die Kompaktierung aus und meldet das Ergebnis als Hinweis: `Kompaktiere Kontext ...`, danach `Kontext kompaktiert`, `Compact übersprungen: <Grund>` oder `Compact fehlgeschlagen: <Fehler>`. Läuft gerade ein Turn, ist der Button gedimmt und meldet beim Klick, dass Compact erst danach möglich ist.
 
 ### Ausblenden und wieder einblenden
 

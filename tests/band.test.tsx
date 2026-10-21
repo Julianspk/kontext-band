@@ -73,6 +73,14 @@ test('Leiste zeigt Restzeit, Trefferquote und Kontext', async ($, on) => {
   expect(kompaktiert).toBe(1)
   expect(toasts.at(-1)).toBe('Compact übersprungen: Test')
 
+  // Läuft ein Turn, bleibt der Button da, löst aber nichts aus
+  const arbeitet = await $.ui.mount({ ...BAND, props: { ...BAND.props, isWorking: true }, surface: 'desktop' })
+  expect(await arbeitet.find({ type: 'Button', key: 'compact' })).toBeTruthy()
+  await arbeitet.press({ key: 'compact' })
+  expect(kompaktiert).toBe(1)
+  expect(toasts.at(-1)).toBe('Compact erst nach dem laufenden Turn möglich')
+  await arbeitet.unmount()
+
   // x blendet die Leiste aus, der Befehl holt sie zurück
   await ui.press({ key: 'close' })
   expect(await ui.find({ type: 'Button', key: 'compact' })).toBeUndefined()
